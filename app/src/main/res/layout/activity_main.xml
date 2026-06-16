@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="60dp"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingBottom="25dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Amount" />
+
+        <TextView
+            android:id="@+id/amountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$100000.00" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="18dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Years" />
+
+        <TextView
+            android:id="@+id/yearsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="18dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Interest Rate" />
+
+        <TextView
+            android:id="@+id/rateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.5%" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="10dp"
+        android:background="#B00020" />
+
+    <TextView
+        android:id="@+id/monthlyPaymentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="18dp"
+        android:text="Monthly Payment $449.04" />
+
+    <TextView
+        android:id="@+id/totalPaymentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="18dp"
+        android:text="Total Payment $161654.66" />
+
+    <CheckBox
+        android:id="@+id/termsCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Terms and Conditions"
+        android:textSize="18sp"
+        android:gravity="center_vertical" />
+
+    <Button
+        android:id="@+id/modifyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="45dp"
+        android:text="MODIFY DATA" />
+
+</LinearLayout>

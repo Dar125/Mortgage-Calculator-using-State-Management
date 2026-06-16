@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="60dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp">
+
+    <RadioGroup
+        android:id="@+id/yearsRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10" />
+
+        <RadioButton
+            android:id="@+id/radio15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15" />
+
+        <RadioButton
+            android:id="@+id/radio30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Amount" />
+
+    <EditText
+        android:id="@+id/amountEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Interest Rate" />
+
+    <ListView
+        android:id="@+id/rateListView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
+
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="DONE" />
+
+</LinearLayout>
