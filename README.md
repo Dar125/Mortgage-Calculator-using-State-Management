@@ -44,4 +44,5 @@ When the application is closed and reopened, the saved values are loaded automat
 
 ## Author
 
-Student Name
+Muhammad Dar,
+Peter Lam
