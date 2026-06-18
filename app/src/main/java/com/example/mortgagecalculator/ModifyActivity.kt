@@ -1,12 +1,11 @@
 // Muhammad Dar
 // CECS-453
-// Lab Assignment 4
-// Mortgage Calculator
-// 16 June, 2026
+// Mobile Application Development
+// Lab Assignment #5
+// Mortgage Calculator Using State Management
+// June 18, 2026
 package com.example.mortgagecalculator
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -34,19 +33,14 @@ class ModifyActivity : AppCompatActivity() {
         val rateListView = findViewById<ListView>(R.id.rateListView)
         val doneButton = findViewById<Button>(R.id.doneButton)
 
-        // Get current mortgage values from MainActivity
-        val oldAmount = intent.getDoubleExtra("amount", 100000.0)
-        val oldYears = intent.getIntExtra("years", 30)
-        val oldRate = intent.getDoubleExtra("rate", 0.035)
-
-        // Display current values on the screen
-        amountEditText.setText(oldAmount.toString())
-        selectedRate = oldRate
+        // Display saved mortgage values from the Provider
+        amountEditText.setText(MortgageProvider.amount.toString())
+        selectedRate = MortgageProvider.rate
 
         // Select the correct radio button
-        if (oldYears == 10) {
+        if (MortgageProvider.years == 10) {
             radio10.isChecked = true
-        } else if (oldYears == 15) {
+        } else if (MortgageProvider.years == 15) {
             radio15.isChecked = true
         } else {
             radio30.isChecked = true
@@ -65,14 +59,20 @@ class ModifyActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, rates)
         rateListView.adapter = adapter
 
+        // Scroll to the previously saved interest rate
+        val position = ((MortgageProvider.rate * 100 - 2.0) / 0.25).toInt()
+
+        rateListView.post {
+            rateListView.setSelection(position)
+        }
+
         // Save the selected interest rate
         rateListView.setOnItemClickListener { _, _, position, _ ->
             selectedRate = (2.0 + (position * 0.25)) / 100.0
         }
 
-        // Return updated information to MainActivity
+        // Save the updated mortgage information
         doneButton.setOnClickListener {
-            val resultIntent = Intent()
 
             // Default loan term
             var years = 30
@@ -91,13 +91,25 @@ class ModifyActivity : AppCompatActivity() {
                 amount = amountEditText.text.toString().toDouble()
             }
 
-            // Send updated values back to MainActivity
-            resultIntent.putExtra("amount", amount)
-            resultIntent.putExtra("years", years)
-            resultIntent.putExtra("rate", selectedRate)
+            // Update the Provider with the new values
+            MortgageProvider.setMortgage(amount, years, selectedRate)
 
-            setResult(Activity.RESULT_OK, resultIntent)
+            // Save values using SharedPreferences
+            saveData(amount, years, selectedRate)
+
             finish()
         }
+    }
+
+    // Save mortgage information in SharedPreferences
+    private fun saveData(amount: Double, years: Int, rate: Double) {
+        val sharedPref = getSharedPreferences("mortgage_data", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        editor.putFloat("amount", amount.toFloat())
+        editor.putInt("years", years)
+        editor.putFloat("rate", rate.toFloat())
+
+        editor.apply()
     }
 }

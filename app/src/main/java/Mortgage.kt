@@ -1,8 +1,9 @@
 // Muhammad Dar
 // CECS-453
-// Lab Assignment 4
-// Mortgage Calculator
-// 16 June, 2026
+// Mobile Application Development
+// Lab Assignment #5
+// Mortgage Calculator Using State Management
+// June 18, 2026
 package com.example.mortgagecalculator
 
 import java.text.DecimalFormat
