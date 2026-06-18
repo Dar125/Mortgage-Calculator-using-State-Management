@@ -14,6 +14,7 @@ import android.widget.ListView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 
 class ModifyActivity : AppCompatActivity() {
 
@@ -38,12 +39,16 @@ class ModifyActivity : AppCompatActivity() {
         selectedRate = MortgageProvider.rate
 
         // Select the correct radio button
-        if (MortgageProvider.years == 10) {
-            radio10.isChecked = true
-        } else if (MortgageProvider.years == 15) {
-            radio15.isChecked = true
-        } else {
-            radio30.isChecked = true
+        when (MortgageProvider.years) {
+            10 -> {
+                radio10.isChecked = true
+            }
+            15 -> {
+                radio15.isChecked = true
+            }
+            else -> {
+                radio30.isChecked = true
+            }
         }
 
         // Create the list of interest rates from 2.0% to 15.0%
@@ -51,7 +56,7 @@ class ModifyActivity : AppCompatActivity() {
         var rate = 2.0
 
         while (rate <= 15.0) {
-            rates.add(rate.toString() + "%")
+            rates.add("$rate%")
             rate += 0.25
         }
 
@@ -104,12 +109,12 @@ class ModifyActivity : AppCompatActivity() {
     // Save mortgage information in SharedPreferences
     private fun saveData(amount: Double, years: Int, rate: Double) {
         val sharedPref = getSharedPreferences("mortgage_data", MODE_PRIVATE)
-        val editor = sharedPref.edit()
+        sharedPref.edit {
 
-        editor.putFloat("amount", amount.toFloat())
-        editor.putInt("years", years)
-        editor.putFloat("rate", rate.toFloat())
+            putFloat("amount", amount.toFloat())
+            putInt("years", years)
+            putFloat("rate", rate.toFloat())
 
-        editor.apply()
+        }
     }
 }
